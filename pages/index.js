@@ -6,6 +6,7 @@ import React, { useEffect, useState } from "react";
 import DriverCard from "../components/DriverCard";
 import Header from "../components/Header";
 import { ExportToCsv } from "export-to-csv";
+import Cookies from 'js-cookie'
 
 export default function Home() {
   const [drivers, setDrivers] = useState([]);
@@ -21,7 +22,7 @@ export default function Home() {
             withCredentials: true,
           }
         );
-        const info = await res.data;
+        
         setDrivers(info);
       } catch (err) {
         console.log("cannot get drivers data", err);
@@ -36,7 +37,9 @@ export default function Home() {
             withCredentials: true,
           }
         );
-
+        const info = await res.data;
+        const{token}= info
+        Cookies.set('jwt',token)
         getDrivers();
       } catch (err) {
         console.log(err);
