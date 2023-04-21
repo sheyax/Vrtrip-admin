@@ -8,7 +8,7 @@ import { ExportToCsv } from "export-to-csv";
 export default function DriverDetail() {
   const router = useRouter();
   const data = router.query.driverId;
-  console.log(data);
+  //console.log(data);
 
   const [trips, setTrips] = useState([]);
   const [detail, setDetail] = useState({});
@@ -17,7 +17,7 @@ export default function DriverDetail() {
     const getData = async () => {
       try {
         const res = await axios.get(
-          `https://vrtrip-db.vercel.app/feed/drivers/${data}`,
+          `${process.env.BACKEND_URL}/feed/drivers/${data}`,
           {
             withCredentials: true,
           }

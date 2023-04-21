@@ -17,7 +17,7 @@ export default function NewDriver() {
     e.preventDefault();
     try {
       const response = await axios.post(
-        "https://vrtrip-db.vercel.app/auth/driver/register",
+        `${process.env.BACKEND_URL}/auth/driver/register`,
         {
           username,
           password: password,

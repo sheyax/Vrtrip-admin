@@ -17,12 +17,13 @@ export default function Home() {
     const getDrivers = async () => {
       try {
         const res = await axios.get(
-          "https://vrtrip-db.vercel.app/feed/drivers",
+          `${process.env.BACKEND_URL}/feed/drivers`,
           {
             withCredentials: true,
           }
         );
-        
+        const info = await res.data
+
         setDrivers(info);
       } catch (err) {
         console.log("cannot get drivers data", err);
@@ -32,7 +33,7 @@ export default function Home() {
     const getAdmin = async () => {
       try {
         const res = await axios.get(
-          "https://vrtrip-db.vercel.app/auth/admin/user",
+          `${process.env.BACKEND_URL}/auth/admin/user`,
           {
             withCredentials: true,
           }

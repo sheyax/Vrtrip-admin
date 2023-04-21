@@ -15,7 +15,7 @@ export default function Login() {
     e.preventDefault();
     try {
       const res = await axios.post(
-        "https://vrtrip-db.vercel.app/auth/admin/login",
+        `${process.env.BACKEND_URL}/auth/admin/login`,
         {
           username,
           password,
