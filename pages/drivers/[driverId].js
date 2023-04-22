@@ -80,9 +80,9 @@ export default function DriverDetail() {
   return (
     <div className="bg-gray-100 h-full flex flex-col">
       <Header />
-      <h1>Driver Detail</h1>
+   
 
-      <div className=" bg-white text-blue-500  font-semibold flex p-5  w-3/5 m-auto justify-between rounded shadow-lg">
+      <div className=" mt-2 bg-white text-blue-500  font-semibold flex p-5  md:w-3/5 m-auto justify-between rounded shadow-lg">
         <div>
           <h1>{detail.username}</h1>
           <p>SE : Micheal Alade</p>
@@ -116,14 +116,14 @@ export default function DriverDetail() {
         </div>
       </div>
 
-      <div className="w-4/5  mx-auto">
+      <div className=" w-full md:w-4/5  mx-auto">
         <div className="flex justify-between bg-blue-500 text-white p-2 items-center">
           <p className="font-semibold mx-2 text-lg">Trips</p>
           <button
             onClick={exportCsvData}
             className="border border-white rounded p-2 text-white font-semibold hover:bg-blue-800 hover:text-white transition transfrom duration-300 ease-out"
           >
-            Export to csv
+            Export data
           </button>
         </div>
         {trips?.map((trip) => (

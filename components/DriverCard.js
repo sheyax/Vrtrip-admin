@@ -34,27 +34,38 @@ export default function DriverCard({
 
   
   return (
-    <div className="grid grid-cols-5 bg-white shadow-lg p-2 items-center mx-5">
+    <div className="grid  grid-cols-3 md:grid-cols-5 
+    bg-white shadow-lg p-2 items-start mx-5 
+    space-x-2
+    border border-gray-800 rounded-lg ">
       <h1 className="text-md font-semibold ">{name}</h1>
 
-      <div className="text-gray-400 text-sm ">
+      <div className="text-gray-600 text-xs hidden md:block">
         <p>Car No. : {vehicleNumber}</p>
         <p>Car Model : {vehicleType}</p>
       </div>
 
-      <div className="text-gray-400 text-sm">
-        <h1>Total Milage : {totalTrip} Km</h1>
+      <div className="text-gray-600 text-xs ">
+        <h1>Total Milage: </h1>
+        <h1 className="font-semibold">{totalTrip} Km</h1>
       </div>
 
-      <div className="text-gray-400 text-sm">
-        <h1>Work Hours: {totalWorkHours} hrs</h1>
-        <h1>OverTime: {totalOverTime} hrs </h1>
+      <div className="text-gray-600 text-xs hidden md:block">
+        <h1>Work Hours: {totalWorkHours.toFixed(2)} hrs</h1>
+        <h1 className="">OverTime: {totalOverTime.toFixed(2)} hrs </h1>
       </div>
 
-      <div>
+      <div className="flex ">
         <button
           onClick={() => router.push(`drivers/${driverId}`)}
-          className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
+          className="bg-transparent
+           hover:bg-blue-500 text-blue-700 
+           font-semibold 
+           hover:text-white py-2 px-4 
+           border border-blue-500 
+           hover:border-transparent rounded
+          ml-auto
+           "
         >
           Details
         </button>

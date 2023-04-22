@@ -13,7 +13,7 @@ export default function TripCard({
   const [showContent, setShowContent] = useState();
   const totalTrip = endOdo - startOdo;
   return (
-    <div className={!approved ? "bg-red-200 " : "bg-white shadow-md"}>
+    <div className={!approved ? "bg-red-200 " : "bg-white shadow-md border border-black my-2 rounded-md cursor-pointer"}>
       <div
         className="flex justify-between text-gray-700 p-3 mx-5 my-2 text-sm"
         onClick={() => setShowContent(!showContent)}

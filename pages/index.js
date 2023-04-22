@@ -113,7 +113,7 @@ export default function Home() {
     csvExporter.generateCsv(csvData);
   };
   return (
-    <div>
+    <div className="">
       <Header />
 
       <div className="p-2 flex space-x-3 ml-5">
@@ -132,8 +132,8 @@ export default function Home() {
         </button>
       </div>
 
-      <h1 className="font-semibold text-lg p-2 ml-5 mt-3">Drivers </h1>
-      <div className="space-y-4 mt-5">
+      <h1 className="font-semibold text-lg p-2 ml-5 mt-2">Drivers </h1>
+      <div className="space-y-4 mt-2 mb-5">
         {drivers?.map((driver) => (
           <div key={driver._id} className="">
             <DriverCard

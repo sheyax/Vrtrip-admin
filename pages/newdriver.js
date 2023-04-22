@@ -30,7 +30,7 @@ export default function NewDriver() {
         }
       );
       alert("succesful");
-      console.log(response.json());
+      console.log(response.data);
       router.push("/");
     } catch (err) {
       setError("unsuccessful");
