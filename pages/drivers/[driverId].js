@@ -77,12 +77,32 @@ export default function DriverDetail() {
     csvExporter.generateCsv(csvData);
   };
 
+
+    //Approve function 
+
+    const onApprove= async (driverIdd, tripId) => {
+      try {
+        const res = await axios.put(
+          `${process.env.BACKEND_URL}/feed/driver/${driverIdd}/dailytrips/${tripId}`,
+          {
+            withCredentials: true,
+          }
+        );
+  
+        console.log("succesful", await res.data);
+        alert("approved");
+    
+      } catch (err) {
+        console.log("unsuccessful", err);
+      }
+    }
+
   return (
     <div className="bg-gray-100 h-full flex flex-col">
       <Header />
    
 
-      <div className=" mt-2 bg-white text-blue-500  font-semibold flex p-5  md:w-3/5 m-auto justify-between rounded shadow-lg">
+      <div className=" mt-2 bg-white text-blue-500  font-semibold flex p-5  md:w-4/5 m-auto justify-between rounded shadow-lg">
         <div>
           <h1>{detail.username}</h1>
           <p>SE : Micheal Alade</p>
@@ -93,22 +113,22 @@ export default function DriverDetail() {
         </div>
       </div>
 
-      <div className="grid grid-cols-3 m-auto space-x-5 my-5">
-        <div className="flex items-center space-x-3">
+      <div className=" flex md:grid md:grid-cols-3 m-auto space-x-5 my-5">
+        <div className="">
           <p className="font-semibold">Total Milage</p>
           <div className=" rounded-full cursor-pointer p-5 w-18 font-bold flex justify-center text-blue-600 hover:bg-blue-500 hover:text-white transition transfrom duration-300 ease-out">
             <h1 className="m-auto"> {totalTrip} Km</h1>
           </div>
         </div>
 
-        <div className="flex items-center space-x-3">
+        <div className="">
           <p className="font-semibold">Work Hours</p>
           <div className=" rounded-full cursor-pointer p-5 w-18 font-bold flex justify-center text-blue-600 hover:bg-blue-500 hover:text-white transition transfrom duration-300 ease-out">
             <h1 className="m-auto"> {totalWorkHours.toFixed(2)} hrs</h1>
           </div>
         </div>
 
-        <div className="flex items-center space-x-3">
+        <div className="">
           <p className="font-semibold">OverTime</p>
           <div className=" rounded-full cursor-pointer p-5 w-18 font-bold flex justify-center text-blue-600 hover:bg-blue-500 hover:text-white transition transfrom duration-300 ease-out">
             <h1 className="m-auto"> {totalOverTime.toFixed(2)} hrs</h1>
@@ -138,6 +158,7 @@ export default function DriverDetail() {
               startLoc={trip.startLocation}
               endLoc={trip.endLocation}
               approved={trip.aprroved}
+              onApprove={()=>onApprove(data, trip._id)}
             />
           </div>
         ))}
