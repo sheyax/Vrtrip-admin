@@ -65,6 +65,7 @@ export default function DriverCard({
            border border-blue-500 
            hover:border-transparent rounded
           ml-auto
+          scale-90 md:scale-100
            "
         >
           Details

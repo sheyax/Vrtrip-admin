@@ -7,10 +7,13 @@ import DriverCard from "../components/DriverCard";
 import Header from "../components/Header";
 import { ExportToCsv } from "export-to-csv";
 import Cookies from 'js-cookie'
+import SideBar from "../components/SideBar";
+import Layout from "../components/Layout";
 
 export default function Home() {
   const [drivers, setDrivers] = useState([]);
   const router = useRouter();
+  const [search, setSearch] = useState('');
 
   useEffect(() => {
     //get all drivers
@@ -113,28 +116,48 @@ export default function Home() {
     csvExporter.generateCsv(csvData);
   };
   return (
-    <div className="">
-      <Header />
-
+ <Layout>
+<div className="">
       <div className="p-2 flex space-x-3 ml-5">
+
+<div className="md:w-3/5 w-5/6">
+      <input type='text'
+       placeholder='Search driver'
+       value={search}
+       onChange={(e)=>setSearch(e.target.value)}
+        className="border w-full border-neutral-500 p-2  rounded-md"/>
+
+        <div className="flex justify-end space-x-2">
+          <h1 onClick={()=> router.push('/newdriver')} 
+          className="md:hidden text-sm text-blue-500">New driver</h1>
+          <h1 onClick={exportCsv} 
+          className="md:hidden text-sm text-blue-500"> Export data</h1>
+        </div>
+    </div> 
         <Link
           href="/newdriver"
-          className="border border-blue-500 rounded p-2 text-blue-500 font-semibold hover:bg-blue-500 hover:text-white transition transfrom duration-300 ease-out"
+          className="hidden md:block border border-blue-500 rounded p-2 text-blue-500 font-semibold hover:bg-blue-500
+           hover:text-white tr=ansition 
+           transfrom duration-300 ease-out"
         >
           <h1>Add Driver</h1>
         </Link>
 
         <button
           onClick={exportCsv}
-          className="border border-blue-500 rounded p-2 text-blue-500 font-semibold hover:bg-blue-500 hover:text-white transition transfrom duration-300 ease-out"
+          className="hidden md:block border border-blue-500 rounded p-2 text-blue-500 font-semibold hover:bg-blue-500 hover:text-white transition transfrom duration-300 ease-out"
         >
           <h1>Export Data</h1>
         </button>
       </div>
 
+     
+     
       <h1 className="font-semibold text-lg p-2 ml-5 mt-2">Drivers </h1>
       <div className="space-y-4 mt-2 mb-5">
-        {drivers?.map((driver) => (
+        {drivers?.filter((item)=>{
+          return search.toLowerCase() === ''? item: item.username.toLowerCase().includes(search)
+        }).map((driver) => (
           <div key={driver._id} className="">
             <DriverCard
               vehicleNumber={driver.assignedVehicle}
@@ -146,6 +169,7 @@ export default function Home() {
           </div>
         ))}
       </div>
-    </div>
+      </div>
+      </Layout>
   );
 }
