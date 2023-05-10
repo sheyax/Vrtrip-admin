@@ -102,14 +102,15 @@ export default function DriverDetail() {
       <Header />
    
 
-      <div className=" mt-2 bg-white text-blue-500  font-semibold flex p-5  md:w-4/5 m-auto justify-between rounded shadow-lg">
+      <div className=" mt-2 bg-white w-[300px] p-5 flex md:w-3/5 m-auto justify-between rounded shadow-lg">
         <div>
-          <h1>{detail.username}</h1>
-          <p>SE : Micheal Alade</p>
+          <h1 className="font-semibold text-2xl">{detail.username}</h1>
+          <p className="text-sm text-gray-400">SE : Micheal Alade</p>
         </div>
-        <div>
-          <p>Vehicle No. : {detail.assignedVehicle}</p>
-          <p>Vehicle Model : {detail.vehicleModel}</p>
+        <div className="text-sm text-gray-400">
+          <h1 className="font-semibold text-black">Car Details</h1>
+          <p>{detail.assignedVehicle}</p>
+          <p>{detail.vehicleModel}</p>
         </div>
       </div>
 
@@ -161,7 +162,7 @@ export default function DriverDetail() {
               onApprove={()=>onApprove(data, trip._id)}
             />
           </div>
-        ))}
+        )).reverse()}
       </div>
     </div>
   );

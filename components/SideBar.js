@@ -15,7 +15,7 @@ const SideBar = () => {
           text-center p-2 text-neutral-500
            hover:scale-95 duration-200 ease-out
            active:text-gray-700 cursor-pointer"
-           onClick={()=> router.push('/')}>
+           onClick={()=> router.push('/dashboard')}>
         <AiOutlineDashboard size={25}/>
         <p className=" md:block text-lg hidden">Dashboard</p>
         </div>
