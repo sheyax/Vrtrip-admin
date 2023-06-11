@@ -9,6 +9,7 @@ import { ExportToCsv } from "export-to-csv";
 import Cookies from 'js-cookie'
 import SideBar from "../components/SideBar";
 import Layout from "../components/Layout";
+import { Table,TableBody,TableCell, TableHead, TableHeaderCell, TableRow } from '@tremor/react';
 
 export default function Home() {
   const [drivers, setDrivers] = useState([]);
@@ -117,43 +118,54 @@ export default function Home() {
   };
   return (
  <Layout>
-<div className="">
-      <div className="p-2 flex space-x-3 ml-5">
+<div className="p-2">
+
+<div className='my-2'>
+                <h1 className='text-lg '>Driver Management</h1>
+            </div>
+            {/* Data display */}
+
+            <div className="my-5 bg-white rounded-lg h-[200px] flex">
+                <div className="p-2 border-r border-slate-400">
+                    <h1 className="text-sky-600 text-lg ">Total Drivers</h1>
+                    <p className="text-6xl text-gray-600">{drivers?.length}</p>
+                </div>
+
+                <div className="p-2 mx-5 space-y-2">
+                    <h1 className="text-sky-500 text-lg">Actions</h1>
+
+                    <h1 
+                    className=" p-2 border border-slate-400 hover:text-white hover:bg-slate-400 hover:scale-95 cursor-pointer transition duration-200 ease-out"
+                    onClick={()=>{router.push('/newdriver')}}
+                    >
+                        Add Driver
+                    </h1>
+
+
+                    <h1 
+                    className=" p-2 border border-slate-400 hover:text-white hover:bg-slate-400 hover:scale-95 cursor-pointer transition duration-200 ease-out"
+                    onClick={exportCsv}
+                    >
+                        Export Data
+                    </h1>
+                </div>
+            </div>
+
+
+      <div className="p-2 flex space-x-3 ">
 
 <div className="md:w-3/5 w-5/6">
       <input type='text'
        placeholder='Search driver'
        value={search}
        onChange={(e)=>setSearch(e.target.value)}
-        className="border w-full border-neutral-500 p-2  rounded-md"/>
+        className="border md:w-3/5 border-neutral-500 p-2 md:ml-[10px] rounded-md"/>
 
-        <div className="flex justify-end space-x-2">
-          <h1 onClick={()=> router.push('/newdriver')} 
-          className="md:hidden text-sm text-blue-500">New driver</h1>
-          <h1 onClick={exportCsv} 
-          className="md:hidden text-sm text-blue-500"> Export data</h1>
-        </div>
+      
     </div> 
-        <Link
-          href="/newdriver"
-          className="hidden md:block border border-blue-500 rounded p-2 text-blue-500 font-semibold hover:bg-blue-500
-           hover:text-white tr=ansition 
-           transfrom duration-300 ease-out"
-        >
-          <h1>Add Driver</h1>
-        </Link>
-
-        <button
-          onClick={exportCsv}
-          className="hidden md:block border border-blue-500 rounded p-2 text-blue-500 font-semibold hover:bg-blue-500 hover:text-white transition transfrom duration-300 ease-out"
-        >
-          <h1>Export Data</h1>
-        </button>
       </div>
 
-     
-     
-      <h1 className="font-semibold text-lg p-2 ml-5 mt-2">Drivers </h1>
+
       <div className="space-y-4 mt-2 mb-5">
         {drivers?.filter((item)=>{
           return search.toLowerCase() === ''? item: item.username.toLowerCase().includes(search)
@@ -165,6 +177,7 @@ export default function Home() {
               name={driver.username}
               trips={driver.dailyTrips}
               driverId={driver._id}
+              carId={driver.assignedVehicle}
             />
           </div>
         ))}

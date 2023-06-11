@@ -42,6 +42,16 @@ const SideBar = () => {
         <p className="hidden md:block text-lg">Drivers</p>
         </div>
 
+        <div className="flex font-semibold
+         items-center space-x-2
+          text-center p-2 text-neutral-500
+           hover:scale-95 duration-200 ease-out
+           active:text-gray-700 cursor-pointer"
+           onClick={()=> router.push('/users')}>
+        <HiOutlineUsers size={25}/>
+        <p className="hidden md:block text-lg">Manage Users</p>
+        </div>
+
         </div>
        
     </div>  
